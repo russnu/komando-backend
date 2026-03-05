@@ -1,0 +1,16 @@
+<configuration>
+    <springProfile name="default">
+        <!-- Console appender -->
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>
+                    %d{h:mm:ss a}  %highlight(%-5level) %replace(%cyan(%50logger{1})){' ', '.'}| %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+</configuration>
