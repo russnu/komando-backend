@@ -13,7 +13,7 @@
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/yourname/komando-backend.git
+git clone https://github.com/russnu/komando-backend.git
 cd komando-backend
 ```
 
