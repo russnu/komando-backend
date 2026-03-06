@@ -86,11 +86,6 @@ After running the application once (so the tables are created), you may populate
 
 Using Docker exec (if MySQL runs in Docker)
 ```bash
-# Enter the MySQL container
-docker exec -it komando-mysql mysql -u root -p komandomobiledb
-
-# Once inside the MySQL shell, run:
-source /path/to/seed.sql;
-# or
-source /path/to/test-seed.sql;
+# on CMD, navigate to parent folder
+docker exec -it komando-mysql mysql -u root -p komandomobiledb < seed.sql  # or test-seed.sql
 ```
