@@ -38,13 +38,28 @@ spring:
 
 ### 3. Start MySQL
 
-- Make sure MySQL runs on: `localhost:3306`
+- ***If running the app locally***: ensure MySQL is available on `localhost:3306`
+- ***If using Docker Compose***: `docker compose up --build`
+  - This will build all images and start MySQL, Kafka, and backend containers.
 
 ### 4. Start Kafka
+#### ***Local backend***
+**Kafka runs in Docker for both local and Dockerized backend setups.**
+- By default, the configuration in `docker-compose.yaml` assumes the backend runs locally:
+```yaml
+KAFKA_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093"
+KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+```
+- ***Navigate to the project root and run:*** `docker compose up -d kafka`
 
-- Navigate to the project root and run: `docker compose up -d`
-- Kafka will run on localhost:9092
-- `docker-compose.yaml` contains all necessary configuration.
+#### ***Dockerized backend***
+
+- If you run the app in Docker, update the Kafka environment in Compose:
+```yaml
+KAFKA_CONTROLLER_QUORUM_VOTERS: "1@kafka:9093"
+KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+```
+- ***Run full Docker stack:*** `docker compose up`
 
 
 ### 5. Firebase
@@ -68,3 +83,14 @@ After running the application once (so the tables are created), you may populate
 - Run either one of the SQL seeder scripts in MySQL Workbench or any SQL client:
   - `seed.sql`
   - `test-seed.sql`
+
+Using Docker exec (if MySQL runs in Docker)
+```bash
+# Enter the MySQL container
+docker exec -it komando-mysql mysql -u root -p komandomobiledb
+
+# Once inside the MySQL shell, run:
+source /path/to/seed.sql;
+# or
+source /path/to/test-seed.sql;
+```

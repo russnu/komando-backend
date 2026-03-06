@@ -1,4 +1,19 @@
 services:
+  mysql:
+    image: mysql:8
+    container_name: komando-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: komandomobiledb
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      retries: 10
+    volumes:
+      - mysql-data:/var/lib/mysql
   kafka:
     image: confluentinc/cp-kafka:latest
     hostname: kafka
@@ -10,12 +25,12 @@ services:
       KAFKA_KRAFT_MODE: "true"  # Enables KRaft mode.
       KAFKA_PROCESS_ROLES: controller,broker  # Kafka acts as both controller and broker.
       KAFKA_NODE_ID: 1  # Unique ID for the Kafka instance.
-      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093"  # Controller quorum.
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093" # if running on the app on Docker, use 1@kafka:9093
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092 # if running on the app on Docker, use kafka:9092
       KAFKA_LOG_DIRS: /var/lib/kafka/data  # Log storage location.
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"  # Enables automatic topic creation.
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1  # Single replica for simplicity.
@@ -25,3 +40,26 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/var/lib/kafka/data  # Maps logs to local storage.
+
+  backend:
+    build: .
+    container_name: komando-backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    ports:
+      - "8080:8080"
+    environment:
+      # Dockerized MySQL
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/komandomobiledb?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
+    volumes:
+      - ./serviceAccountKey.json:/app/serviceAccountKey.json
+
+volumes:
+  mysql-data:
