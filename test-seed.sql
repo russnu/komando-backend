@@ -76,16 +76,3 @@ INSERT INTO task_users (task_id, user_id) VALUES
 (9,1),
 (10,3);
 
--- ===========================
--- DEVICES (optional)
--- ===========================
-INSERT INTO devices (fcm_token, user_id) VALUES
--- Emulator 
-('crbyqBzaTI6rbWllEG2M5J:APA91bETRZORWU2Kf05Ef67fMf_zuwUkmy3DC8Q2-D4Wdjyioa-8vWfOkHkny0sEqQGR5vNv1q96VokP5ugwaH3t4gN0yTMLYcQ9Lp8LX-9o3lTJeuGY5pU',1),
-('crbyqBzaTI6rbWllEG2M5J:APA91bETRZORWU2Kf05Ef67fMf_zuwUkmy3DC8Q2-D4Wdjyioa-8vWfOkHkny0sEqQGR5vNv1q96VokP5ugwaH3t4gN0yTMLYcQ9Lp8LX-9o3lTJeuGY5pU',2),
-('crbyqBzaTI6rbWllEG2M5J:APA91bETRZORWU2Kf05Ef67fMf_zuwUkmy3DC8Q2-D4Wdjyioa-8vWfOkHkny0sEqQGR5vNv1q96VokP5ugwaH3t4gN0yTMLYcQ9Lp8LX-9o3lTJeuGY5pU',3),
-
--- Pixel 2 Emulator 
-('e68AOQezR5u899fW5Q7n55:APA91bGftn4YjSO_0PvtFH_xsaB34Pv9cjjt3K0a-Y1qgugHMDkhQfq_-G5gPqS4tM-e0Eg8LQdytSUvo-SYBvsn5LcblAxobs-DLzUKrIE01bY0ji4XP2M',1),
-('e68AOQezR5u899fW5Q7n55:APA91bGftn4YjSO_0PvtFH_xsaB34Pv9cjjt3K0a-Y1qgugHMDkhQfq_-G5gPqS4tM-e0Eg8LQdytSUvo-SYBvsn5LcblAxobs-DLzUKrIE01bY0ji4XP2M',2),
-('e68AOQezR5u899fW5Q7n55:APA91bGftn4YjSO_0PvtFH_xsaB34Pv9cjjt3K0a-Y1qgugHMDkhQfq_-G5gPqS4tM-e0Eg8LQdytSUvo-SYBvsn5LcblAxobs-DLzUKrIE01bY0ji4XP2M',3);
