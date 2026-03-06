@@ -61,4 +61,10 @@ firebase:
 - **Build the project** (run in the **parent folder**):
   - `mvn clean install`
 - **Run the project** (run inside the `komandosb` folder):
-  - `mvn exec:java
+  - `mvn exec:java`
+
+### Optional: Populate Database with Seeder
+After running the application once (so the tables are created), you may populate the database with sample data.
+- Run either one of the SQL seeder scripts in MySQL Workbench or any SQL client:
+  - `seed.sql`
+  - `test-seed.sql`
