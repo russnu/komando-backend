@@ -88,9 +88,36 @@ public class GroupServiceImpl implements GroupService {
                 }
 
                 entity.getUsers().addAll(users);
+
+
             }
 
             GroupData saved = repository.save(entity);
+
+            Set<Integer> addedUserIds = entity.getUsers().stream()
+                    .map(UserData::getId)
+                    .filter(id -> !id.equals(currentUser.getId())) // exclude creator
+                    .collect(Collectors.toSet());
+
+            if (!addedUserIds.isEmpty()){
+                List<String> tokens = userDeviceRepository.findAllByUserIdIn(addedUserIds)
+                        .stream()
+                        .map(UserDeviceData::getFcmToken)
+                        .filter(Objects::nonNull)
+                        .toList();
+
+                if (!tokens.isEmpty()) {
+                    GroupUserAssignedEvent event = GroupUserAssignedEvent.from(
+                            entity,
+                            currentUser,
+                            new ArrayList<>(addedUserIds),
+                            tokens
+                    );
+
+                    groupEventProducer.publish(event);
+                }
+            }
+
             return TransformGroup.toDTO(saved, false, false);
         } catch (Exception e) {
             throw new RuntimeException("\nERROR CREATING GROUP: \n", e);

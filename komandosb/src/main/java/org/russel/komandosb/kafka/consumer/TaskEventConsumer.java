@@ -129,7 +129,7 @@ public class TaskEventConsumer {
         }
 
         String title = "ASSIGNED TO TASK!";
-        String body = event.getAssignerName() + "assigned you to: \"" + event.getTitle() + "\"";
+        String body = event.getAssignerName() + " assigned you to: \"" + event.getTitle() + "\"";
 
         Map<String, String> data = new HashMap<>();
         data.put("taskId", event.getTaskId().toString());

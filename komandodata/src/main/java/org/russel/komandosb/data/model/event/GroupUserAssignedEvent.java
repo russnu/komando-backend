@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.russel.komandosb.data.entity.GroupData;
-import org.russel.komandosb.data.entity.TaskData;
 import org.russel.komandosb.data.entity.UserData;
 import org.russel.komandosb.data.enums.EventType;
 

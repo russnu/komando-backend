@@ -22,10 +22,15 @@ public class TaskData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String title;
+
+    @Lob
+    @Column(nullable = true)
     private String description;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Status status;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -39,11 +44,11 @@ public class TaskData {
     private Set<UserData> assignedUsers = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by_id")
+    @JoinColumn(name = "created_by_id", nullable = false)
     private UserData createdBy;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", nullable = false)
     private GroupData group;
 
     @CreationTimestamp

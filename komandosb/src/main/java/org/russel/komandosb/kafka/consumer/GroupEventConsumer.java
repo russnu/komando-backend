@@ -100,7 +100,7 @@ public class GroupEventConsumer {
         String body = event.getAssignerName() + " added you to \"" + event.getGroupName() + "\"";
 
         Map<String, String> data = new HashMap<>();
-        data.put("taskId", event.getGroupId().toString());
+        data.put("groupId", event.getGroupId().toString());
         data.put("eventType", event.getEventType().name());
 
         TaskNotification notification = new TaskNotification(

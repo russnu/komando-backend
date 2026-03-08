@@ -6,12 +6,10 @@ import lombok.NoArgsConstructor;
 import org.russel.komandosb.data.entity.TaskData;
 import org.russel.komandosb.data.entity.UserData;
 import org.russel.komandosb.data.enums.EventType;
-import org.russel.komandosb.data.enums.Status;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Map;
 
 @Data
 @NoArgsConstructor
