@@ -215,6 +215,11 @@ public class GroupServiceImpl implements GroupService {
 
             data.getUsers().removeAll(selectedUsers);
 
+            // Unassign removed users from all tasks in this group
+            data.getTasks().forEach(task ->
+                    task.getAssignedUsers().removeAll(selectedUsers)
+            );
+
             repository.save(data);
 
             // Fetch FCM tokens for removed users
