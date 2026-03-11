@@ -47,3 +47,5 @@ komandosb/src/main/resources/serviceAccountKey.json
 *.snapshot
 *.checkpoint
 .idea/
+
+serviceAccountKey.json

@@ -1,11 +1,11 @@
-package org.russel.komandosb.kafka.consumer;
+package org.russel.notification.kafka.consumer;
 
 import org.russel.komandosb.data.model.TaskNotification;
 import org.russel.komandosb.data.model.event.GroupDeletedEvent;
 import org.russel.komandosb.data.model.event.GroupUpdatedEvent;
 import org.russel.komandosb.data.model.event.GroupUserAssignedEvent;
 import org.russel.komandosb.data.model.event.GroupUserRemovedEvent;
-import org.russel.komandosb.firebase.FcmService;
+import org.russel.notification.firebase.service.FcmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;

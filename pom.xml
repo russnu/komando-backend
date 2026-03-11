@@ -19,6 +19,7 @@
     <modules>
         <module>komandodata</module>
         <module>komandosb</module>
+        <module>komando-notification-service</module>
     </modules>
 
     <properties>

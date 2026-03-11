@@ -1,4 +1,4 @@
-package org.russel.komandosb.firebase;
+package org.russel.notification.firebase.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 @Configuration
 public class FirebaseConfig {
@@ -34,7 +34,10 @@ public class FirebaseConfig {
 
     @Bean
     GoogleCredentials googleCredentials() throws IOException {
-        InputStream is = new ClassPathResource(serviceAccountPath).getInputStream();
-        return GoogleCredentials.fromStream(is);
+
+        // InputStream is = new ClassPathResource(serviceAccountPath).getInputStream();
+        // move serviceAccount.json outside resources (anywhere, just put path in app.yaml)
+        FileInputStream serviceAccount = new FileInputStream(serviceAccountPath);
+        return GoogleCredentials.fromStream(serviceAccount);
     }
 }

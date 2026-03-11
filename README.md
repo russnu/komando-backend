@@ -64,19 +64,36 @@ KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
 
 ### 5. Firebase
 - The Firebase service account file will be shared privately by the project owner.
-- Place the file in the project root as: `serviceAccountKey.json`
+- Place the file in the project root or any directory in your machine as: `serviceAccountKey.json`
 - Update the path in application.yaml if necessary:
 ```yaml
 firebase:
-  service-account-path: serviceAccountKey.json
+  service-account-path: your/path/to/serviceAccountKey.json
 ```
 
-### 6. Run project
+### 6. Run the project
 
-- **Build the project** (run in the **parent folder**):
-  - `mvn clean install`
-- **Run the project** (run inside the `komandosb` folder):
-  - `mvn exec:java`
+1. **Build the project** (run in the **parent directory**):
+   - `mvn clean install`
+2. **Run Core Backend (API)** (run inside the `komandosb` directory):
+   - `mvn exec:java`
+   - This starts: `http://localhost:8080`
+   - ***Responsibilities***:
+     - REST API 
+     - database operations 
+     - publishing Kafka events
+
+3. **Run Notification Service** (run inside the `komando-notification-service` directory):
+   - `mvn exec:java`
+   - This starts: `http://localhost:8081`
+   - ***Responsibilities***:
+     - consume Kafka events
+     - send push notifications via Firebase
+
+#### Responsibilities:
+- REST API
+- database operations
+- publishing Kafka events
 
 ### Optional: Populate Database with Seeder
 After running the application once (so the tables are created), you may populate the database with sample data.

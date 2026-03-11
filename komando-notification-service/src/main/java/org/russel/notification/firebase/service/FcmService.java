@@ -1,4 +1,4 @@
-package org.russel.komandosb.firebase;
+package org.russel.notification.firebase.service;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
@@ -7,9 +7,6 @@ import com.google.firebase.messaging.Notification;
 import org.russel.komandosb.data.model.TaskNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class FcmService {
