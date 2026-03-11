@@ -1,10 +1,10 @@
 package org.russel.notification.kafka.consumer;
 
-import org.russel.komandosb.data.model.TaskNotification;
-import org.russel.komandosb.data.model.event.GroupDeletedEvent;
-import org.russel.komandosb.data.model.event.GroupUpdatedEvent;
-import org.russel.komandosb.data.model.event.GroupUserAssignedEvent;
-import org.russel.komandosb.data.model.event.GroupUserRemovedEvent;
+import org.russel.komandocore.data.model.TaskNotification;
+import org.russel.komandocore.data.model.event.GroupDeletedEvent;
+import org.russel.komandocore.data.model.event.GroupUpdatedEvent;
+import org.russel.komandocore.data.model.event.GroupUserAssignedEvent;
+import org.russel.komandocore.data.model.event.GroupUserRemovedEvent;
 import org.russel.notification.firebase.service.FcmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaHandler;

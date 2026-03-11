@@ -18,7 +18,7 @@
 
     <modules>
         <module>komandodata</module>
-        <module>komandosb</module>
+        <module>komando-core</module>
         <module>komando-notification-service</module>
     </modules>
 
